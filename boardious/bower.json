@@ -1,0 +1,25 @@
+{
+  "name": "boardious",
+  "authors": [
+    "Walter Cordero <wcordero.lara@gmail.com>"
+  ],
+  "description": "\"packages para la presentacion de Google IO Extended Guatemala\"",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-bootstrap": "^2.5.0",
+    "angular-ui-router": "^1.0.3"
+  }
+}
