@@ -20,6 +20,8 @@
   "dependencies": {
     "angular": "^1.6.4",
     "angular-bootstrap": "^2.5.0",
-    "angular-ui-router": "^1.0.3"
+    "angular-ui-router": "^1.0.3",
+    "bootstrap": "^3.3.7",
+    "angular-animate": "^1.6.4"
   }
 }

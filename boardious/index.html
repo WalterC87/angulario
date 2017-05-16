@@ -1,0 +1,61 @@
+<!doctype html>
+<html ng-app="boardious">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Google IO | Boardious</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/angular-gridster.min.css">
+
+  </head>
+  <body ng-controller="MainCtrl as main" ng-class="{loading:loadingView}" class="bg-{{main.currentColor}}">
+    <div class="app-wrap">
+      <header class="navbar-clear nav-wrap" role="banner">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a ui-sref="boards" class="navbar-brand"><img src="assets/images/logo.png" alt="noterio.us"/></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse bg-{{main.currentColor}}">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="{{main.currentColor}}" href="http://angularjs.org/" target="_blank">AngularJS</a></li>
+            <li><a class="{{main.currentColor}}" href="https://github.com/WalterC87/angulario.git" target="_blank">GitHub</a></li>
+            <li>
+              <a class="btn btn-link {{main.currentColor}}" ng-if="main.currentUser" ng-click="main.logout()">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+
+      <div ui-view class="content"></div>
+
+      <div class="modal"></div>
+
+      <color-picker></color-picker>
+    </div>
+
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/angular/angular.min.js"></script>
+    <script src="vendors/angular-animate/angular-animate.js"></script>
+    <script src="vendors/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="vendors/angular-bootstrap/ui-bootstrap.js"></script>
+
+    <script src="app/app.js"></script>
+
+    
+    <script>
+      var navMain = angular.element(".navbar-collapse");
+      navMain.on("click", "a", null, function () {
+         navMain.collapse('hide');
+      });
+    </script>
+  </body>
+</html>
