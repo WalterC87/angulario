@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes){
-    var Boards = sequelize.define('boards', {
+    var Boards = sequelize.define('Boards', {
         boardTitle: {
             type: DataTypes.STRING
         },
@@ -15,6 +15,11 @@ module.exports = function(sequelize, DataTypes){
             defaultValue: true
         }
     }, {
+        classMethods: {
+            associate: function(models){
+                Boards.hasMany(models.Notes);
+            }
+        },
         freezeTableName: true,
         tableName: 'boards'
     });
