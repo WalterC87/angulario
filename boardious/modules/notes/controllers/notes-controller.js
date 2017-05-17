@@ -25,7 +25,7 @@ angular.module('boardious')
     };
 
     ctrl.getBoard = function () {
-      BoardsModel.fetch(boardId)
+      BoardsModel.getId(boardId)
         .then(function (board) {
           ctrl.board = board;
         }, function (reason) {

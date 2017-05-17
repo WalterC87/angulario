@@ -47,7 +47,6 @@ exports.post = function(req, res, next){
 };
 
 exports.put = function(req, res, next){
-    console.log(req.body);
     models.Boards.update({
         boardTitle: req.body.boardTitle,
         boardDescription: req.body.boardDescription

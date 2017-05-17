@@ -41,7 +41,6 @@ angular.module('boardious')
     }
 
     service.put = function(data){
-        console.log(data);
         var deferred = $q.defer();
         $http.post(ENDPOINT_URI + "/boards/put/" + data.id, data)
         .then(function (response){
