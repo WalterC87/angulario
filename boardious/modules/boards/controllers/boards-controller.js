@@ -23,7 +23,6 @@ angular.module('boardious')
       BoardsModel.get().then(
         function (result) {
           ctrl.boards = (result.data.data.length > 0) ? result.data.data : [];
-          console.log(ctrl.boards);
           ctrl.resetForm();
         });
     };

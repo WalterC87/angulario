@@ -27,26 +27,27 @@ angular.module('boardious')
     ctrl.getBoard = function () {
       BoardsModel.getId(boardId)
         .then(function (board) {
-          ctrl.board = board;
+          ctrl.board = board.data.data;
         }, function (reason) {
           //
         });
     };
 
     ctrl.getNotes = function () {
-      NotesModel.all(boardId)
+      NotesModel.get(boardId)
         .then(function (notes) {
-          ctrl.notes = (notes !== 'null') ? notes : {};
+          ctrl.notes = (notes.data.data.length > 0) ? notes.data.data : [];
         }, function (reason) {
           //
         });
     };
 
     ctrl.createNote = function (note, isValid) {
+      // console.log(note); return false;
       if (isValid) {
         ctrl.loading = true;
-
-        NotesModel.create(boardId, note)
+        note.BoardId = boardId;
+        NotesModel.post(note)
           .then(function (result) {
             ctrl.getNotes();
           })
@@ -63,21 +64,20 @@ angular.module('boardious')
       if (isValid) {
         ctrl.loading = true;
 
-        NotesModel.update(boardId, noteId, note)
+        NotesModel.put(note)
           .then(function (result) {
             ctrl.getNotes();
+            ctrl.resetForm();
           })
           .catch(function (reason) {
             //
           })
-          .finally(function() {
-            ctrl.resetForm();
-          });
+          
       }
     };
 
     ctrl.deleteNote = function (noteId) {
-      NotesModel.destroy(boardId, noteId)
+      NotesModel.delete(noteId)
         .then(function (result) {
           ctrl.getNotes();
         })

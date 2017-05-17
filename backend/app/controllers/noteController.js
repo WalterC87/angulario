@@ -12,7 +12,7 @@ exports.get = function(req, res, next){
             status: 1
         }
     }).then(function (data){
-        if(!board){
+        if(!data){
             sendJSONresponse(res, 400, {"type": false, "message": "Error al obtener las notas "});
         }else{
             sendJSONresponse(res, 200, {"type": true, "data": data});
@@ -22,8 +22,8 @@ exports.get = function(req, res, next){
 
 exports.post = function(req, res, next){
     models.Notes.create({
-        noteTitle: req.body.noteTitle,
-        noteDescription: req.body.noteDescription,
+        noteTitle: req.body.title,
+        noteDescription: req.body.content,
         BoardId: req.body.BoardId || null
     }).then(function (board){
         if(!board){

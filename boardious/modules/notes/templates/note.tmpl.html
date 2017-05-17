@@ -3,7 +3,7 @@
     <button
         type="button"
         class="close"
-        ng-click="ctrl.deleteNote(ctrl.noteId)">
+        ng-click="ctrl.deleteNote(ctrl.note.id)">
       &times;
     </button>
     <div>
@@ -11,13 +11,13 @@
           type="text"
           class="medium"
           ng-model="ctrl.note.title"
-          ng-blur="ctrl.updateNote(ctrl.noteId, ctrl.note)"
+          ng-blur="ctrl.updateNote(ctrl.note.id, ctrl.note)"
           placeholder="Note Title">
     </div>
     <div>
       <textarea
           ng-model="ctrl.note.content"
-          ng-blur="ctrl.updateNote(ctrl.noteId, ctrl.note)"
+          ng-blur="ctrl.updateNote(ctrl.note.id, ctrl.note)"
           placeholder="Note content">
       </textarea>
     </div>

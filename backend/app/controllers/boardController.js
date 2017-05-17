@@ -30,6 +30,21 @@ exports.get = function(req, res, next){
             sendJSONresponse(res, 200, {"type": true, "data": data});
         }
     })
+};
+
+exports.getId = function(req,res,nest){
+    models.Boards.findOne({
+        where: {
+            id: req.params.id,
+            status: 1
+        }
+    }).then(function (data){
+        if(!data){
+            sendJSONresponse(res, 400, {"type": false, "message": "Error al obtener los boards "});
+        }else{
+            sendJSONresponse(res, 200, {"type": true, "data": data});
+        }
+    })
 }
 
 exports.post = function(req, res, next){

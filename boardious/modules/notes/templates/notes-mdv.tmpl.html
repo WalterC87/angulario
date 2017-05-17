@@ -2,7 +2,7 @@
   <span
       class="large"
       ng-click="ctrl.goBack()">
-    {{ctrl.board.title}}
+    {{ctrl.board.boardTitle}}
   </span>
 </div>
 <div class="col-sm-4">
@@ -12,19 +12,19 @@
       ng-repeat="(noteId, note) in ctrl.notes"
       ng-click="ctrl.setEditedNote(noteId, note)"
       ng-class="{
-        'active':ctrl.isCurrentNote(noteId)
+        'active':ctrl.isCurrentNote(note.id)
       }">
       <button
           type="button"
           class="close"
-          ng-click="ctrl.deleteNote(noteId)">
+          ng-click="ctrl.deleteNote(note.id)">
         &times;
       </button>
 
-      <h3>{{note.title}}</h3>
+      <h3>{{note.noteTitle}}</h3>
 
       <p>
-        <strong>{{note.content}}</strong>
+        <strong>{{note.noteDescription}}</strong>
       </p>
     </div>
   </div>
@@ -69,7 +69,7 @@
   </div>
   <!-- EDITING -->
   <div ng-if="ctrl.isEditing" class="col-xs-12 note-details">
-    <h3>Editing {{ctrl.editedNote.title}}</h3>
+    <h3>Editing {{ctrl.editedNote.noteTitle}}</h3>
     <hr/>
     <form
       name="ctrl.updateForm"
@@ -82,7 +82,7 @@
         <input
           type="text"
           class="form-control"
-          ng-model="ctrl.editedNote.title"
+          ng-model="ctrl.editedNote.noteTitle"
           placeholder="Note Title"
           required>
       </div>
@@ -91,7 +91,7 @@
         <input
             type="text"
             class="form-control"
-            ng-model="ctrl.editedNote.content"
+            ng-model="ctrl.editedNote.noteDescription"
             placeholder="Note Content"
             required>
       </div>

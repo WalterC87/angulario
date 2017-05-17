@@ -18,7 +18,7 @@ angular.module('boardious')
 
     service.getId = function(boardId){
         var deferred = $q.defer();
-        $http.get(ENDPOINT_URI + "/boards/get/" + boardId)
+        $http.get(ENDPOINT_URI + "/boards/getId/" + boardId)
         .then(function (response){
             deferred.resolve(response);
         }, function(response){
