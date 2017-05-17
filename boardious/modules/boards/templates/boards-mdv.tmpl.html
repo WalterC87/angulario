@@ -51,7 +51,7 @@
   </div>
   <!-- EDITING -->
   <div ng-if="ctrl.isEditing" class="col-xs-12 board-details">
-    <h3>Editing {{ ctrl.editedBoard.title }}</h3>
+    <h3>Editing {{ ctrl.editedBoard.boardTitle }}</h3>
     <hr/>
     <form
       name="ctrl.updateForm"
@@ -65,7 +65,7 @@
         <input
           type="text"
           class="form-control"
-          ng-model="ctrl.editedBoard.title"
+          ng-model="ctrl.editedBoard.boardTitle"
           placeholder="Board Title"
           required>
       </div>
@@ -76,7 +76,7 @@
         <input
           type="text"
           class="form-control"
-          ng-model="ctrl.editedBoard.description"
+          ng-model="ctrl.editedBoard.boardDescription"
           placeholder="Board Description"
           required>
       </div>

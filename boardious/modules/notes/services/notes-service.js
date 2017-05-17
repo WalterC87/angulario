@@ -7,12 +7,11 @@ angular.module('boardious')
     service.get = function(boardId){
         var deferred = $q.defer();
         $http.get(ENDPOINT_URI + "/notes/get/" + boardId)
-        .success(function(response){
+        .then(function (response){
             deferred.resolve(response);
-        })
-        .error(function(response){
+        }, function(response){
             deferred.resolve(response);
-        })
+        });
 
         return deferred.promise;
     }
@@ -20,12 +19,11 @@ angular.module('boardious')
     service.post = function(data){
         var deferred = $q.defer();
         $http.post(ENDPOINT_URI + "/notes/post", data.params)
-        .success(function(response){
+        .then(function (response){
             deferred.resolve(response);
-        })
-        .error(function(response){
+        }, function(response){
             deferred.resolve(response);
-        })
+        });
 
         return deferred.promise;
     }
@@ -33,12 +31,11 @@ angular.module('boardious')
     service.put = function(data){
         var deferred = $q.defer();
         $http.post(ENDPOINT_URI + "/notes/put/" + data.params.id, data.params)
-        .success(function(response){
+        .then(function (response){
             deferred.resolve(response);
-        })
-        .error(function(response){
+        }, function(response){
             deferred.resolve(response);
-        })
+        });
 
         return deferred.promise;
     }
@@ -46,12 +43,11 @@ angular.module('boardious')
     service.delete = function(data){
         var deferred = $q.defer();
         $http.post(ENDPOINT_URI + "/notes/delete/" + data.params.id)
-        .success(function(response){
+        .then(function (response){
             deferred.resolve(response);
-        })
-        .error(function(response){
+        }, function(response){
             deferred.resolve(response);
-        })
+        });
 
         return deferred.promise;
     }

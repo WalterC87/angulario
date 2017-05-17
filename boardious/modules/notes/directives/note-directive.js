@@ -1,4 +1,4 @@
-angular.module('noterious')
+angular.module('boardious')
   .directive('note', function(NotesModel, $stateParams){
     var controller = function($scope) {
       var ctrl = this,

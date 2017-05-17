@@ -8,24 +8,22 @@ angular.module('boardious')
 
     ctrl.newBoard = {
       title: '',
-      description: '',
-      isPublic: false
+      description: ''
     };
 
     ctrl.resetForm = function () {
       ctrl.loading = false;
       ctrl.newBoard = {
         title: '',
-        description: '',
-        isPublic: false
+        description: ''
       };
     };
 
     ctrl.getBoards = function () {
-      BoardsModel.all()
-        .then(function (result) {
-          ctrl.boards = (result !== 'null') ? result : {};
-        }, function () {
+      BoardsModel.get().then(
+        function (result) {
+          ctrl.boards = (result.data.data.length > 0) ? result.data.data : [];
+          console.log(ctrl.boards);
           ctrl.resetForm();
         });
     };
@@ -34,7 +32,7 @@ angular.module('boardious')
       if (isValid) {
         ctrl.loading = true;
 
-        BoardsModel.create(board)
+        BoardsModel.post(board)
           .then(function (result) {
             ctrl.getBoards();
           })
@@ -50,8 +48,7 @@ angular.module('boardious')
     ctrl.updateBoard = function (boardId, board, isValid) {
       if (isValid) {
         ctrl.loading = true;
-        BoardsModel.update(boardId, board)
-          .then(function (result) {
+        BoardsModel.put(board).then(function (result) {
             ctrl.getBoards();
           })
           .catch(function (reason) {
@@ -64,7 +61,7 @@ angular.module('boardious')
     };
 
     ctrl.deleteBoard = function (boardId) {
-      BoardsModel.destroy(boardId)
+      BoardsModel.delete(boardId)
         .then(function (result) {
           ctrl.getBoards();
         })
@@ -92,8 +89,6 @@ angular.module('boardious')
       ctrl.editedBoard = null;
       ctrl.isEditing = false;
     };
-
-    ctrl.gridsterOpts = Gridster.getOptions();
 
     ctrl.getBoards();
   });

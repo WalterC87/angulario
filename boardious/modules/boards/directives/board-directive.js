@@ -1,9 +1,9 @@
-angular.module('noterious')
+angular.module('boardious')
   .directive('simpleBoard', function(){
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'app/boards/board-simple.tmpl.html'
+      templateUrl: 'modules/boards/templates/board-simple.tmpl.html'
     }
   })
   .directive('board', function(BoardsModel){
@@ -14,7 +14,7 @@ angular.module('noterious')
 
       ctrl.updateBoard = function (boardId, board) {
         ctrl.loading = true;
-        BoardsModel.update(boardId, board)
+        BoardsModel.put(boardId, board)
           .then(function (result) {
             console.log('result', result);
           })
@@ -37,7 +37,7 @@ angular.module('noterious')
         board:'=',
         remove:'&'
       },
-      templateUrl: 'app/boards/board.tmpl.html',
+      templateUrl: 'modules/boards/templates/board.tmpl.html',
       controller: controller,
       controllerAs: 'ctrl',
       bindToController: true

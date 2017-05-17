@@ -4,54 +4,63 @@ angular.module('boardious')
 .service('BoardsModel', function($http, $q, ENDPOINT_URI){
     var service = this;
 
-    service.get = function(boardId){
+    service.get = function(){
+        var deferred = $q.defer();
+        $http.get(ENDPOINT_URI + "/boards/get")
+        .then(function (response){
+            deferred.resolve(response);
+        }, function(response){
+            deferred.resolve(response);
+        });
+
+        return deferred.promise;
+    }
+
+    service.getId = function(boardId){
         var deferred = $q.defer();
         $http.get(ENDPOINT_URI + "/boards/get/" + boardId)
-        .success(function(response){
+        .then(function (response){
             deferred.resolve(response);
-        })
-        .error(function(response){
+        }, function(response){
             deferred.resolve(response);
-        })
+        });
 
         return deferred.promise;
     }
 
     service.post = function(data){
         var deferred = $q.defer();
-        $http.post(ENDPOINT_URI + "/boards/post", data.params)
-        .success(function(response){
+        $http.post(ENDPOINT_URI + "/boards/post", data)
+        .then(function (response){
             deferred.resolve(response);
-        })
-        .error(function(response){
+        }, function(response){
             deferred.resolve(response);
-        })
+        });
 
         return deferred.promise;
     }
 
     service.put = function(data){
+        console.log(data);
         var deferred = $q.defer();
-        $http.post(ENDPOINT_URI + "/boards/put/" + data.params.id, data.params)
-        .success(function(response){
+        $http.post(ENDPOINT_URI + "/boards/put/" + data.id, data)
+        .then(function (response){
             deferred.resolve(response);
-        })
-        .error(function(response){
+        }, function(response){
             deferred.resolve(response);
-        })
+        });
 
         return deferred.promise;
     }
 
-    service.delete = function(data){
+    service.delete = function(id){
         var deferred = $q.defer();
-        $http.post(ENDPOINT_URI + "/boards/delete/" + data.params.id)
-        .success(function(response){
+        $http.post(ENDPOINT_URI + "/boards/delete/" + id)
+        .then(function (response){
             deferred.resolve(response);
-        })
-        .error(function(response){
+        }, function(response){
             deferred.resolve(response);
-        })
+        });
 
         return deferred.promise;
     }

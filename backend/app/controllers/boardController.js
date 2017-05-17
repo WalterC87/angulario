@@ -24,7 +24,7 @@ exports.get = function(req, res, next){
             status: 1
         }
     }).then(function (data){
-        if(!board){
+        if(!data){
             sendJSONresponse(res, 400, {"type": false, "message": "Error al obtener los boards "});
         }else{
             sendJSONresponse(res, 200, {"type": true, "data": data});
@@ -34,8 +34,8 @@ exports.get = function(req, res, next){
 
 exports.post = function(req, res, next){
     models.Boards.create({
-        boardTitle: req.body.boardTitle,
-        boardDescription: req.body.boardDescription,
+        boardTitle: req.body.title,
+        boardDescription: req.body.description,
         boardAvatar: req.body.boardAvatar || null
     }).then(function (board){
         if(!board){
@@ -47,6 +47,7 @@ exports.post = function(req, res, next){
 };
 
 exports.put = function(req, res, next){
+    console.log(req.body);
     models.Boards.update({
         boardTitle: req.body.boardTitle,
         boardDescription: req.body.boardDescription

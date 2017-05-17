@@ -2,6 +2,7 @@
 
 angular.module('boardious')
   .controller('MainCtrl', function ($state) {
+    var main = this;
     main.currentColor = 'blue';
 
     main.colors = [

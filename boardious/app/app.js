@@ -15,13 +15,13 @@ angular.module('boardious', [
                 templateUrl: 'modules/boards/templates/boards-mdv.tmpl.html',
                 controller: 'BoardsCtrl',
                 controllerAs: 'ctrl'
+            })
             .state('notes', {
                 url: '/boards/:boardId/notes',
                 templateUrl: 'modules/notes/templates/notes-mdv.tmpl.html',
                 controller: 'NotesCtrl',
                 controllerAs: 'ctrl'
             })
-        })
     })
 ;
     
