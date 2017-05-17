@@ -15,6 +15,7 @@ fs.readdirSync(controllers_path).forEach(function (file){
 
 var routesController = function(server){
     server.get("/boards/get", controllers.boardController.get);
+    server.get("/boards/get/id/:id", controllers.boardController.getId);
     server.post("/boards/post", controllers.boardController.post);
     server.post("/board/upload/image", multipartMiddleware, controllers.boardController.uploadImage);
     server.put("/boards/put/:id", controllers.boardController.put);

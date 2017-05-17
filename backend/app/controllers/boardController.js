@@ -32,10 +32,25 @@ exports.get = function(req, res, next){
     })
 }
 
+exports.getId = function(req, res, next){
+    models.Boards.findAll({
+        where: {
+            id: req.params.id,
+            status: 1
+        }
+    }).then(function (data){
+        if(!board){
+            sendJSONresponse(res, 400, {"type": false, "message": "Error al obtener los boards "});
+        }else{
+            sendJSONresponse(res, 200, {"type": true, "data": data});
+        }
+    })
+}
+
 exports.post = function(req, res, next){
     models.Boards.create({
-        boardTitle: req.body.boardTitle,
-        boardDescription: req.body.boardDescription,
+        boardTitle: req.body.title,
+        boardDescription: req.body.description,
         boardAvatar: req.body.boardAvatar || null
     }).then(function (board){
         if(!board){
@@ -48,8 +63,8 @@ exports.post = function(req, res, next){
 
 exports.put = function(req, res, next){
     models.Boards.update({
-        boardTitle: req.body.boardTitle,
-        boardDescription: req.body.boardDescription
+        boardTitle: req.body.title,
+        boardDescription: req.body.description
     }, {
         where: {
             id: req.params.id

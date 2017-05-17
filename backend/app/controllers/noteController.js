@@ -8,7 +8,7 @@ var sendJSONresponse = function(res, status, content){
 exports.get = function(req, res, next){
     models.Notes.findAll({
         where: {
-            BoardId: req.params.BoardId,
+            BoardId: req.params.boardId,
             status: 1
         }
     }).then(function (data){
@@ -22,9 +22,9 @@ exports.get = function(req, res, next){
 
 exports.post = function(req, res, next){
     models.Notes.create({
-        noteTitle: req.body.noteTitle,
-        noteDescription: req.body.noteDescription,
-        BoardId: req.body.BoardId || null
+        noteTitle: req.body.title,
+        noteDescription: req.body.content,
+        BoardId: req.body.boardId || null
     }).then(function (board){
         if(!board){
             sendJSONresponse(res, 400, {"type": false, "message": "Error al crear la Nota "});
@@ -36,8 +36,8 @@ exports.post = function(req, res, next){
 
 exports.put = function(req, res, next){
     models.Notes.update({
-        noteTitle: req.body.noteTitle,
-        noteDescription: req.body.noteDescription
+        noteTitle: req.body.title,
+        noteDescription: req.body.content
     }, {
         where: {
             id: req.params.id

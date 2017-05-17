@@ -8,21 +8,19 @@ angular.module('boardious')
 
     ctrl.newBoard = {
       title: '',
-      description: '',
-      isPublic: false
+      description: ''
     };
 
     ctrl.resetForm = function () {
       ctrl.loading = false;
       ctrl.newBoard = {
         title: '',
-        description: '',
-        isPublic: false
+        description: ''
       };
     };
 
     ctrl.getBoards = function () {
-      BoardsModel.all()
+      BoardsModel.get()
         .then(function (result) {
           ctrl.boards = (result !== 'null') ? result : {};
         }, function () {
@@ -34,7 +32,7 @@ angular.module('boardious')
       if (isValid) {
         ctrl.loading = true;
 
-        BoardsModel.create(board)
+        BoardsModel.post(board)
           .then(function (result) {
             ctrl.getBoards();
           })
@@ -50,7 +48,7 @@ angular.module('boardious')
     ctrl.updateBoard = function (boardId, board, isValid) {
       if (isValid) {
         ctrl.loading = true;
-        BoardsModel.update(boardId, board)
+        BoardsModel.put(boardId, board)
           .then(function (result) {
             ctrl.getBoards();
           })
@@ -64,7 +62,7 @@ angular.module('boardious')
     };
 
     ctrl.deleteBoard = function (boardId) {
-      BoardsModel.destroy(boardId)
+      BoardsModel.delete(boardId)
         .then(function (result) {
           ctrl.getBoards();
         })

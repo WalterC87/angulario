@@ -30,9 +30,9 @@ angular.module('boardious')
         return deferred.promise;
     }
 
-    service.put = function(data){
+    service.put = function(id, data){
         var deferred = $q.defer();
-        $http.post(ENDPOINT_URI + "/notes/put/" + data.params.id, data.params)
+        $http.post(ENDPOINT_URI + "/notes/put/" + id, data)
         .success(function(response){
             deferred.resolve(response);
         })
@@ -43,9 +43,9 @@ angular.module('boardious')
         return deferred.promise;
     }
 
-    service.delete = function(data){
+    service.delete = function(id){
         var deferred = $q.defer();
-        $http.post(ENDPOINT_URI + "/notes/delete/" + data.params.id)
+        $http.post(ENDPOINT_URI + "/notes/delete/" + id)
         .success(function(response){
             deferred.resolve(response);
         })

@@ -25,7 +25,7 @@ angular.module('boardious')
     };
 
     ctrl.getBoard = function () {
-      BoardsModel.fetch(boardId)
+      BoardsModel.getId(boardId)
         .then(function (board) {
           ctrl.board = board;
         }, function (reason) {
@@ -34,7 +34,7 @@ angular.module('boardious')
     };
 
     ctrl.getNotes = function () {
-      NotesModel.all(boardId)
+      NotesModel.get(boardId)
         .then(function (notes) {
           ctrl.notes = (notes !== 'null') ? notes : {};
         }, function (reason) {
@@ -45,8 +45,9 @@ angular.module('boardious')
     ctrl.createNote = function (note, isValid) {
       if (isValid) {
         ctrl.loading = true;
+        note.boardId = boardId;
 
-        NotesModel.create(boardId, note)
+        NotesModel.post(note)
           .then(function (result) {
             ctrl.getNotes();
           })
@@ -62,8 +63,9 @@ angular.module('boardious')
     ctrl.updateNote = function (noteId, note, isValid) {
       if (isValid) {
         ctrl.loading = true;
+        note.boardId = boardId;
 
-        NotesModel.update(boardId, noteId, note)
+        NotesModel.put(noteId, note)
           .then(function (result) {
             ctrl.getNotes();
           })
@@ -77,7 +79,7 @@ angular.module('boardious')
     };
 
     ctrl.deleteNote = function (noteId) {
-      NotesModel.destroy(boardId, noteId)
+      NotesModel.delete(noteId)
         .then(function (result) {
           ctrl.getNotes();
         })
